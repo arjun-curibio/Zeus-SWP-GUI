@@ -18,7 +18,7 @@ class SimpleApp:
         row = 0
 
         tk.Label(root, text="Output Recording Path: ", justify='right', anchor='e', ).grid(row=row, column=0, sticky="E")
-        self.output_dir = tk.StringVar(root, pathlib.Path(__file__).parent)
+        self.output_dir = tk.StringVar(root, os.path.abspath("."))
         self.output_dir_entry = tk.Entry(root, width = 30, textvariable=self.output_dir, justify=tk.RIGHT)
         self.output_dir_entry.grid(row=row, column = 1)
 
@@ -182,7 +182,7 @@ class SimpleApp:
                 '-pf',      int(self.playback_fps.get()),
                 '-e',       int(self.exposure.get()),
                 '-t',       int(self.duration.get()*1000),
-                '-o',  self.output_dir.get(),
+                '-o',       self.output_dir.get(),
                 '-fi',      full_filename,
                 '-pb',      int(self.toggle_playback.get())
             ]
